@@ -1,0 +1,33 @@
+table,td,th {
+    border: 1px solid black;
+}
+            
+table {
+    border-collapse: collapse;
+            
+}
+            
+th {
+    height: 50px;
+            
+}
+.button{
+    background-color: purple;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    width: 170px;
+}
+.button1{
+    background-color: orangered;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    width: 70px;
+}
+@media only screen and (max-width: 800px) {
+   .button{
+      align-items: flex-start;
+      justify-content: start;
+   }
+}
