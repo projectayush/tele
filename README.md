@@ -1,3 +1,0 @@
-# teletic
-
-Teletic Intern Project    
