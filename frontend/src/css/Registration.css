@@ -1,0 +1,40 @@
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+}
+#registrationForm .form-control{
+    background: none;
+     border: none;
+    border-bottom:1px solid #ddd ; 
+    padding: 0;
+    font-size: 14px;
+    height: auto;
+}
+#registrationForm .btn-primary{
+    background-color: #01a3a4;
+    width: 170px;
+    border-radius: 50px;
+    height: 50px;
+    font-size: 25px;
+    padding-top: 1px;
+}
+ #registrationForm .img-fluid{
+    width: 100%;
+    height: 756px;  
+ }
+#registrationForm .mainclass{
+    margin-top: 80px;
+} 
+#registrationForm .signclass{
+    color: #01a3a4;
+}
+#registrationForm .form-control-lg{
+    padding: 10px;
+    padding-left: 80px;
+ }
+#registrationForm .fas{
+     position: relative;
+     display: block;
+     left: -150px;
+     font-size: 25px;
+     top: 39px;
+}
