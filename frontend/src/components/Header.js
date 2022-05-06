@@ -4,7 +4,6 @@ const Header = () => {
 
   return (
     <>
-      {/* <!-- header --> */}
       <div className="card bg-info " >
         <div className="card-header">
           <div className="row">
@@ -40,7 +39,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {/* <!-- header end --> */}
     </>
   )
 }

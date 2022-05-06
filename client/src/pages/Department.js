@@ -30,9 +30,9 @@ const Department = () => {
       setCategory(await getcat.department);
     }
     getcategory();
-  },[])
+  })
 
-  
+
 
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const Department = () => {
     const errors = {};
 
     if (!values.message) {
-      errors.name = "**Please write a DepartName"
+      errors.name = "**Please write a Department Name"
     }
     return errors
   }
@@ -86,7 +86,7 @@ const Department = () => {
         console.log('ErroR:', err);
       }
     } else {
-      toast("DepartmentName is empty")
+      toast("Department Name is empty")
       console.log("Some error occured");
     }
     setFormErrors(validate(data4));
@@ -128,17 +128,18 @@ const Department = () => {
         <ModalBody>
           <form  >
             <div className="row   ">
-              <div className='text-center'>
-                <input className='text-left fs-5 form-control-lg' type='text' name='text' placeholder='Enter Department' required style={{ width: '30%' }, { height: '70%' }}
+              <div className=" col-md-6">
+                <h6>Department Name<span style={{ color: "red" }}>*</span></h6>
+                <input className='px-3 form-control-lg' type='text' name='text' required style={{ height: '50px', width: '100%' }}
                   onChange={(e) => setName(e.target.value)}
 
                 />
                 <p><span style={{ color: 'red' }}>{formErrors.name}</span></p>
               </div>
             </div>
-            <div className="d-flex align-items-center justify-content-center mt-5 ">
-              <button type="button" className="button btn text-white mx-3 "
-                style={{ backgroundColor: 'orangered' }}
+            <div className="d-flex align-items-center justify-content-center mt-4 ">
+              <button type="button" className="button btn text-white mx-1 "
+                style={{ backgroundColor: 'purple', width: "20%" }}
                 onClick={(e) => handleSubmit(e)}
 
               >Submit</button>
@@ -212,7 +213,7 @@ const Department = () => {
                             {/* Moment(categoryget.created_at).format("dd/MM/yyyy kk:mm:ss") */}
 
                             {/* <td key={category.id}>{categoryget.created_at}</td> */}
-                            <td key={category.id}>{format ( new Date(categoryget.created_at), 'dd-MM-yyyy HH:mm')}</td>
+                            <td key={category.id}>{format(new Date(categoryget.created_at), 'dd-MM-yyyy HH:mm')}</td>
                             {/* <td>{categoryget.created_at}</td> */}
                             <td key={category.id}>
                               <button type='button' className='button1 border-0'>

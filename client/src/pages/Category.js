@@ -22,7 +22,7 @@ const Category = () => {
       setCategory(await getcat.getcategory);
     }
     getcategory();
-  },[])
+  })
 
   useEffect(() => {
     console.log('formErrors', formErrors)
@@ -45,7 +45,7 @@ const Category = () => {
     const errors = {};
 
     if (!values.message) {
-      errors.categoryName = "**Please write a CategoryName"
+      errors.categoryName = "**Please write a Category Name"
     }
     return errors
   }
@@ -77,7 +77,7 @@ const Category = () => {
         console.log('ErroR:', err);
       }
     } else {
-      toast("CategoryName is empty")
+      toast("Category Name is empty")
       console.log("Some error occured");
     }
     setFormErrors(validate(data4));
@@ -115,8 +115,9 @@ const Category = () => {
         <ModalBody>
           <form  >
             <div className="row   ">
-              <div className='text-center'>
-                <input className='text-left fs-5 form-control-lg' type='text' name='text' placeholder='Enter Category' required style={{ width: '30%' }, { height: '70%' }}
+              <div className=" col-md-6">
+                <h6>Category Name<span style={{ color: "red" }}>*</span></h6>
+                <input className='px-3 form-control-lg' type='text' name='text' required style={{ height: '50px', width: '100%' }}
                   onChange={(e) => setName(e.target.value)}
 
                 />
@@ -124,9 +125,9 @@ const Category = () => {
               </div>
             </div>
             {/* </div>  */}
-            <div className="d-flex align-items-center justify-content-center mt-5 ">
+            <div className="d-flex align-items-center justify-content-center mt-4 ">
               <button type="button" className="button btn text-white mx-3 "
-                style={{ backgroundColor: 'orangered' }}
+                style={{ backgroundColor: 'purple', width: "20%" }}
                 onClick={(e) => handleSubmit(e)}
               >Submit</button>
 
@@ -199,7 +200,7 @@ const Category = () => {
                           <tr >
                             <td key={categoryget.id}>{categoryget.categoryname}</td>
                             {/* <td>{categoryget.created_at}</td> */}
-                            <td key={category.id}>{format ( new Date(categoryget.created_at), 'dd-MM-yyyy HH:mm')}</td>
+                            <td key={category.id}>{format(new Date(categoryget.created_at), 'dd-MM-yyyy HH:mm')}</td>
                             <td key={category.id}>
                               <button type='button' className='button1 border-0'>
                                 <i

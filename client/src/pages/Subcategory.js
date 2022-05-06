@@ -25,7 +25,7 @@ const Subcategory = () => {
       setCategory(await getcat.newsub);
     }
     getcategory();
-  },[])
+  })
 
   // to select category from Dropdown
   useEffect(() => {
@@ -35,7 +35,7 @@ const Subcategory = () => {
       setTitle(await getsubcat.getcategory)
     }
     getsubcategory();
-  },[])
+  })
 
   useEffect(() => {
     console.log('formErrors', formErrors)
@@ -55,11 +55,11 @@ const Subcategory = () => {
     const errors = {};
 
     if (!values.name) {
-      errors.categoryName = "**Please select a CategoryName"
+      errors.categoryName = "**Please select a Category Name"
     }
 
     if (!values.subCategory) {
-      errors.category = "**Please write a subcategory"
+      errors.category = "**Please write a Subcategory Name"
     }
     return errors
   }
@@ -129,13 +129,16 @@ const Subcategory = () => {
         </ModalHeader>
         <ModalBody>
           <form  >
-            <div className="row  mx-4 ">
-              <div className=" col-md-6 ">
-                <select name='category' style={{ width: '70%', height: '50px' }}
+
+            <div className="row d-flex flex-row justify-content-between direction-row">
+
+              <div className="col-md-6" >
+                <h6>Category Name<span style={{ color: "red" }}>*</span></h6>
+                <select name='category' style={{ height: '50px', width: '100%' }}
                   onChange={(e) => setParentid(e.target.value)}
 
                 >
-                  <option>---Select Category---</option>
+                  <option>Select Category</option>
                   {
                     title.map((titleget) => (
                       <option value={titleget.id}>{titleget.categoryname}</option>
@@ -144,17 +147,20 @@ const Subcategory = () => {
                 </select>
                 <p><span style={{ color: 'red' }}>{formErrors.categoryName}</span></p>
               </div>
+
               <div className=" col-md-6">
-                <input className='px-3 form-control-lg' type='text' name='text' placeholder='Enter Subcategory' required style={{ width: '70%', height: '50px' }}
+                <h6>Subcategory Name<span style={{ color: "red" }}>*</span></h6>
+                <input className='px-3 form-control-lg' type='text' name='text' required style={{ height: '50px', width: '100%' }}
                   onChange={(e) => setName(e.target.value)}
 
                 />
                 <p><span style={{ color: 'red' }}>{formErrors.category}</span></p>
               </div>
             </div>
-            <div className="d-flex align-items-center justify-content-center mt-5 ">
+
+            <div className="d-flex align-items-center justify-content-center mt-4 ">
               <button type="button" className="button btn text-white mx-3 "
-                style={{ backgroundColor: 'orangered' }}
+                style={{ backgroundColor: 'purple', width: "20%" }}
                 onClick={(e) => handleSubmit(e)}
               >Submit</button>
 
@@ -183,7 +189,7 @@ const Subcategory = () => {
                       </div>
                     </div>
                     <div className="row">
-                    <div className="col-md-6 mt-3 fs-5 ">
+                      <div className="col-md-6 mt-3 fs-5 ">
                         <input type="text" placeholder="Search by SubCategory" className='form-control-lg' onChange={e => setQuery(e.target.value)} style={{ width: "70%" }} />
                       </div>
                       {/* <div className="col-md-4 mt-2 form-control-lg  fs-5 border-0 ">
@@ -228,7 +234,7 @@ const Subcategory = () => {
                             <td>{categoryget.category_name}</td>
                             <td>{categoryget.subcategory_name}</td>
                             {/* <td>{categoryget.created_at}</td> */}
-                            <td key={category.id}>{format ( new Date(categoryget.created_at), 'dd-MM-yyyy HH:mm')}</td>
+                            <td key={category.id}>{format(new Date(categoryget.created_at), 'dd-MM-yyyy HH:mm')}</td>
                             <td>
                               <button type='button' className='button1 border-0'>
                                 <i className='fa-solid fa-trash-can text-white mx-2 my-2 p-1 fs-6'
