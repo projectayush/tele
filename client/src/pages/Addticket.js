@@ -131,13 +131,18 @@ const Addticket = () => {
 
       let resJson = await res.json();
       console.log('resjson ', resJson);
+      console.log('id:',resJson.id)
 
       let response = await fetch('http://localhost:5000/api/v1/history', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data1),
+        body: JSON.stringify({
+          ticket_id: resJson.id,
+          user_id:localStorage.getItem('id'),
+          message:localStorage.getItem('full_name')+' has added ticket successfully'
+        }),
       })
 
       let responseJson = await response.json();

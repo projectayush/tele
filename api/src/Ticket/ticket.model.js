@@ -40,15 +40,17 @@ Ticket.getTicketByID = (id, result) => {
 		});
 	});
 }
+
+
 Ticket.createTicket = (ticketData, result) => {
 
-	return new Promise((resolve, reject) => {
-		dbConn.query('INSERT INTO tickets SET ?', ticketData, (err, res) => {
-			if (err)
-				return reject(err);
-			resolve(res);
-		});
-	});
+    return new Promise((resolve, reject) => {
+        dbConn.query('INSERT INTO tickets SET ?', ticketData, (err, res) => {
+            if (err)
+                return reject(err);
+            resolve(res);
+        });
+    });
 
 },
 

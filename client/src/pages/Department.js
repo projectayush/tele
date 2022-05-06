@@ -170,10 +170,7 @@ const Department = () => {
                       <div className="col-md-6 mt-3 fs-5 ">
                         <input type="text" placeholder="Search by Department" className='form-control-lg' onChange={e => setQuery(e.target.value)} style={{ width: "100%" }} />
                       </div>
-                      {/* <div className="col-md-6 mt-2 form-control-lg  fs-5 border-0 ">
-                        <button type="button" className="btn text-white d-flex align-items-start justify-content-start "
-                          style={{ backgroundColor: "orangered" }}><b>RESET</b></button>
-                      </div> */}
+                      
                     </div>
                   </div>
                 </div>
