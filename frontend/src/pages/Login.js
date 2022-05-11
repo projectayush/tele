@@ -1,7 +1,26 @@
 import React from 'react'
 import '../css/Login.css'
+import { useNavigate } from 'react-router-dom';
+
+// import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+
+// toast.configure()
 
 const Login = () => {
+
+  let navigate = useNavigate();
+  const routeChange = () => {
+		let path = `/forgotpassword`;
+		navigate(path);
+	  }
+    const pathChange = () => {
+      let path = `/home`;
+      navigate(path);
+      }
+
+
+
   return (
     <>
       <div className="row" id="loginform">
@@ -26,9 +45,13 @@ const Login = () => {
               </label>
             </div>
             <div className="form-group mt-4 mx-3">
-              <button type="button" className="btn btn-primary border-0 " >Sign In</button>
+              <button type="button" className="btn btn-primary border-0 "
+              onClick={pathChange}
+              >Sign In</button>
 
-              <p className="mt-3 fs-5" >Forgot Your Password?</p>
+              <p className="mt-3 fs-5" ><a href='#'
+              onClick={routeChange}
+              >Forgot Your Password?</a></p>
             </div>
 
             <div className="form-group  mx-3 ">
