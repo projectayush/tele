@@ -1,7 +1,70 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import axios from 'axios';
+import UseLocalStorage, { UseLocalStorage2 } from '../UseLocalStorage';
+import { UseLocalStorage1 } from '../UseLocalStorage';
+import userContext from '../Store/userContext';
+import { useNavigate } from 'react-router-dom';
 import '../css/Login.css'
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure()
+
+var validator = require('validator');
 const Login = () => {
+  const userctx = useContext(userContext);
+  const [password, setPassword] = UseLocalStorage1("password", '');
+  const [email, setEmail] = UseLocalStorage('email', '');
+ 
+
+
+  let navigate = useNavigate();
+
+  async function LoginIn(e) {
+    e.preventDefault();
+    let data = { email, password };
+    console.log('data', data);
+    if (email && password) {
+
+      try {
+        const response = await axios.post(`http://localhost:5000/login1`, data);
+
+        console.log(data);
+        console.log(response);
+        // console.log('id:' ,localStorage.getItem('data.full_name'))
+        if (response.data.message === "login successfully") {
+          toast(response.data.message);
+
+          let user = {
+            full_name: response.data.full_name,
+            token: response.data.token,
+            email: email,
+            id: response.data.id
+          }
+          console.log("userdata2343:", user);
+          console.log("userctx",userctx.updateUser(user))
+          userctx.updateUser(user);
+          console.log(response);
+          navigate("/home");
+
+        }
+        else {
+          toast("Please try again")
+        }
+      } catch (error) {
+
+        console.log(error);
+      }
+    }
+    else {
+      toast.error("Fill Your Details To Sign In");
+    }
+
+  }
+
+
+
   return (
     <>
       <div className="row" id="loginform">
@@ -15,18 +78,26 @@ const Login = () => {
             <div className="form-group  mx-3">
               <label className="my-0">
                 <i className="fas fa-envelope"></i>
-                <input type="email" placeholder="Email id" className="form-control-lg shadow-sm rounded-pill border border-secondary" />
+                <input type="email" placeholder="Email id"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  // onChange={handleEmail}
+                  className="form-control-lg shadow-sm rounded-pill border border-secondary" />
               </label>
             </div>
 
             <div className="form-group  mx-3">
               <label className="my-0">
                 <i className="fas fa-lock"></i>
-                <input type="password" placeholder="Password" className="form-control-lg shadow-sm rounded-pill border border-secondary" />
+                <input type="password" placeholder="Password"
+                  value={password}
+                  // onChange={handlePassword}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="form-control-lg shadow-sm rounded-pill border border-secondary" />
               </label>
             </div>
             <div className="form-group mt-4 mx-3">
-              <button type="button" className="btn btn-primary border-0 " >Sign In</button>
+              <button type="button" className="btn btn-primary border-0 " onClick={(e) => { LoginIn(e) }} >Sign In</button>
 
               <p className="mt-3 fs-5" >Forgot Your Password?</p>
             </div>

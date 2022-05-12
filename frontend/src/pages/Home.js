@@ -193,8 +193,6 @@ const Home = () => {
       </div>
       {/* <!-- End --> */}
 
-
-
       {/* <!-- footer start --> */}
       <Footer />
 

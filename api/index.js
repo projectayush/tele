@@ -35,7 +35,8 @@ const ticketRoutes = require('./src/Ticket/ticket.route');
 const historyRoutes = require('./src/History/history.route');
 const commentRoutes = require('./src/Comment/comment.route');
 const otpRoutes = require('./src/OTP/otp.route');
-
+const registrationRoutes = require('./src/Frontend_api/Registration/registration.route');
+const frontendloginRoutes = require('./src/Frontend_api/Login_frontend/loginFront.route');
 // User Routes
 // app.use('/api/v1/user', loginRoutes);
 
@@ -46,7 +47,7 @@ const otpRoutes = require('./src/OTP/otp.route');
 const loginRoutes = require('./src/Login/login.route');
 app.use('/login', loginRoutes);
 
-
+app.use('/loginfrontend', frontendloginRoutes);
 
 // Department Routes
 app.use('/api/v1/departments',departmentRoutes);
@@ -67,6 +68,9 @@ app.use('/api/v1/comments',commentRoutes);
 app.use('/api/v1/otps' , otpRoutes);
 
 
+app.use('/api/v1/registration',registrationRoutes)
+
 app.listen(port,()=>{
     console.log(`Server is running at port ${port}`);
 })
+
