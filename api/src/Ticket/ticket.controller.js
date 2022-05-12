@@ -1,3 +1,5 @@
+// const { id } = require('date-fns/locale');
+// const { id } = require('date-fns/locale');
 const dbConn = require('../../config/db.config');
 const TicketModel = require('../Ticket/ticket.model');
 
@@ -46,17 +48,47 @@ exports.getTicketByID = async(req , res)=>{
 
 // Create User Using Promise
 exports.createNewTicket = async (req, res) => {
-    const ticketData = new  TicketModel(req.body);
-  try {
-   
-     const ticketsData = await TicketModel.createTicket(ticketData);
-    
-    res.status(200).json({ ticketsData });
-  } catch (error) {
-    res.status(400).json({ message: `${error}` });
-  }
+  const ticketData = new  TicketModel(req.body);
+  
+try {
+ 
+   const ticketsData = await TicketModel.createTicket(ticketData);
+
+  res.status(200).json({ 
+    success:1,
+    message:"Ticket inserted Successfully",
+    data:ticketsData,
+    id:ticketsData.insertId
+   });
+  console.log('ticketsData' , ticketsData)
+} catch (error) {
+  res.status(400).json({ message: `${error}` });
+} 
 
 };
+
+
+// exports.createNewTicket = (req, res)=>{
+//   const body = req.body;
+//   const ticketData = new TicketModel(body);
+//   console.log('body data', ticketData)
+  
+//   TicketModel.createTicket(ticketData , (err , result)=>{
+//     console.log('resultdata' , result);
+//     const[resultData]= result;
+//     const id = resultData.id;
+//     console.log('TicketData:' , resultData);
+//     console.log('ticketid', id);
+
+//     if(err) throw err
+//      return res.json({
+//        success:1,
+//        data: ticketData,
+//        id: resultData.id,
+//        message:"Ticket Inserted Successfully"
+//      })
+//   })
+// } 
 
 // update User using PROMISE
 exports.updateTicket = async(req , res)=>{

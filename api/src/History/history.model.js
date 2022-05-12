@@ -4,7 +4,7 @@ var Histories = function (histories) {
     this.id = histories.id;
     this.ticket_id = histories.ticket_id;
     this.user_id = histories.user_id;
-    this.message = histories.username + ' has created ticket successfully';
+    this.message = histories.message;
     //    this.message = histories.updatemsg+'has updated ticket successfully';
     this.created_at = new Date();
 

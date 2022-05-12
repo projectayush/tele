@@ -119,6 +119,14 @@ const Ticketdetail = () => {
 
       setActive(2);
       data1.status = active;
+      var statusName;
+      if(data1.status === 1){
+        statusName = 'close';
+      }else if(data1.status === 2){
+        statusName = 'reopen'
+      }else{
+        statusName = 'close'
+      }
       console.log("data1", data1);
       let res = await fetch(`http://localhost:5000/api/v1/ticket/${id}`, {
         method: 'PUT',
@@ -128,7 +136,24 @@ const Ticketdetail = () => {
         body: JSON.stringify(data1),
       })
       let resJson = await res.json();
-      if (res.status === 200) {
+      console.log('resjson ', resJson);
+
+      let response = await fetch('http://localhost:5000/api/v1/history', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ticket_id : id,
+          user_id:localStorage.getItem('id'),
+          message: localStorage.getItem('full_name')+' has changed the status to '+statusName
+        }),
+      })
+
+      let responseJson = await response.json();
+      console.log('responseJson', responseJson);
+
+      if (res.status && response.status === 200 ) {
         // alert("Status changed successfully!");
         var check = window.confirm('Are you sure you want to close this ticket?')
         if (check) {
@@ -138,7 +163,9 @@ const Ticketdetail = () => {
         toast("Some error occured")
         console.log("Some error occured");
       }
-      console.log('resjson ', resJson);
+      
+
+
 
 
     } catch (err) {
@@ -152,6 +179,14 @@ const Ticketdetail = () => {
 
       setOpen(1);
       data1.status = open;
+      var statusName;
+      if(data1.status === 1){
+        statusName = 'close';
+      }else if(data1.status === 2){
+        statusName = 'reopen'
+      }else{
+        statusName = 'close'
+      }
       console.log("data1", data1);
       let res = await fetch(`http://localhost:5000/api/v1/ticket/${id}`, {
         method: 'PUT',
@@ -161,7 +196,26 @@ const Ticketdetail = () => {
         body: JSON.stringify(data1),
       })
       let resJson = await res.json();
-      if (res.status === 200) {
+      console.log('resjson ', resJson);
+      // console.log('status' , JSON.stringify(data1.status))
+
+      let response = await fetch('http://localhost:5000/api/v1/history', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ticket_id : id,
+          user_id:localStorage.getItem('id'),          
+          message: localStorage.getItem('full_name')+' has changed the status to '+statusName
+        }),
+      })
+
+      let responseJson = await response.json();
+      console.log('responseJson', responseJson);
+
+      if (res.status && response.status === 200) {
+
         // alert("Status changed successfully!");
         var check = window.confirm('Are you sure you want to close this ticket?')
         if (check) {
@@ -172,7 +226,7 @@ const Ticketdetail = () => {
         console.log("Some error occured");
       }
 
-      console.log('resjson ', resJson);
+
 
 
     } catch (err) {
@@ -249,7 +303,7 @@ const Ticketdetail = () => {
 
         </ModalBody> */}
       </Modal>
-      <div className="container-fluid ">
+      {/* <div className="container-fluid "> */}
         {/* <!-- Sidebar start --> */}
         <div className="container-fluid">
           <div className="row flex-nowrap">
@@ -318,7 +372,7 @@ const Ticketdetail = () => {
           </div>
         </div>
         {/* <!-- Sidebar end --> */}
-      </div>
+      {/* </div> */}
     </>
   )
 }

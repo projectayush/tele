@@ -6,6 +6,7 @@ import { UseLocalStorage1 } from '../UseLocalStorage';
 import userContext from '../Store/userContext';
 import { useNavigate } from 'react-router-dom';
 import '../css/Adminlogin.css'
+import { el } from 'date-fns/locale';
 
 
 const Adminlogin = () => {
@@ -17,7 +18,7 @@ const Adminlogin = () => {
 	const routeChange = () => {
 		let path = `/forgotpassword`;
 		navigate(path);
-	  }
+	}
 
 	let navigate = useNavigate();
 	async function LoginIn(e) {
@@ -25,7 +26,7 @@ const Adminlogin = () => {
 		let data = { email, password };
 		console.log(data);
 
-		
+
 
 
 		try {
@@ -35,23 +36,28 @@ const Adminlogin = () => {
 			console.log(response);
 
 			if (response.data.message === "login successfully") {
-				toast(response.data.message);
+				// toast(response.data.message);
 
 				let user = {
 					full_name: response.data.full_name,
 					token: response.data.token,
 					email: email,
-					id: response.data.id
+					id: response.data.id,
+					role_id: response.data.role_id
 				}
-				console.log("userdata:", user)
-				userctx.updateUser(user);
-				console.log(response);
-				navigate("/dashboard");
+				console.log('role_id', response.data.role_id);
+				if (response.data.role_id === 0) {
+					console.log("userdata:", user)
+					userctx.updateUser(user);
+					console.log(response);
+					navigate("/dashboard");
 
+				}
+				
+			}else {
+				toast("You cannot login")
 			}
-			else {
-				toast("Please try again")
-			}
+
 		} catch (error) {
 
 			console.log(error);
@@ -76,7 +82,7 @@ const Adminlogin = () => {
 
 						<div className="row mt-3">
 							<div className="col-md-6 mt-3">
-							<p ><a onClick={routeChange}>Forgot Password? </a></p>
+								<p ><a onClick={routeChange}>Forgot Password? </a></p>
 							</div>
 							<div className="col-md-6 mt-3">
 								<p><input type="submit" className="btn" value="Submit" onClick={(e) => { LoginIn(e) }} /></p>
