@@ -29,7 +29,7 @@ const Title = () => {
 
     }
     getcategory();
-  }, [])
+  })
 
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const Title = () => {
 
     }
     gettitle();
-  },[])
+  })
 
   useEffect(() => {
     console.log('formErrors', formErrors)
@@ -50,7 +50,7 @@ const Title = () => {
   }, [formErrors])
 
 
-  
+
 
   const handleCategory = (event) => {
     const getcategoryid = event.target.value;
@@ -75,18 +75,18 @@ const Title = () => {
   };
   const validate = (values) => {
     const errors = {};
-   
+
     if (!values.name) {
       errors.categoryName = "**Please select a Category"
     }
 
     if (!values.subCategory) {
-      errors.subcategoryname = "**Please select a subcategory"
+      errors.subcategoryname = "**Please select a Subcategory"
     }
     if (!values.title) {
-      errors.titlename = "**Please write a title"
+      errors.titlename = "**Please write a Title"
     }
-       return errors
+    return errors
   }
 
   let handleSubmit = async (e) => {
@@ -154,11 +154,13 @@ const Title = () => {
         </ModalHeader>
         <ModalBody>
           <form  >
-            <div className="row">
-              <div className=" col-md-4 ">
-                <select name='category'  style={{ height: '70%' }}
+            <div className="row d-flex flex-row  direction-row" >
+
+              <div className=" col-md-4 " >
+                <h6>Category<span style={{ color: "red" }}>*</span></h6>
+                <select name='category' style={{ height: '50px', width: '100%' }}
                   onChange={(e) => handleCategory(e)}>
-                  <option >----Select Category----</option>
+                  <option >Select Category</option>
                   {
                     category.map((categoryget, index) => (
                       <option key={index} value={categoryget.id} id={categoryget.id}>{categoryget.categoryname}</option>
@@ -168,11 +170,12 @@ const Title = () => {
                 <p><span style={{ color: 'red' }}>{formErrors.categoryName}</span></p>
               </div>
               <div className=" col-md-4 ">
-                <select name='subcategory'  style={{ height: '70%' }}
+                <h6>Subcategory<span style={{ color: "red" }}>*</span></h6>
+                <select name='subcategory' style={{ height: '50px', width: '100%' }}
                   onChange={(e) => setParentid(e.target.value)}
 
                 >
-                  <option >---Select Subcategory---</option>
+                  <option >Select Subcategory</option>
                   {
                     subcategory.map((subcategoryget, index) => (
                       <option value={subcategoryget.subcategory_id} id={subcategoryget.subcategory_id}>{subcategoryget.subcategory_name}</option>
@@ -181,19 +184,20 @@ const Title = () => {
                 </select>
                 <p><span style={{ color: 'red' }}>{formErrors.subcategoryname}</span></p>
               </div>
-              <div className=" col-md-3">
-                <input type='text' name='text' placeholder='Enter Title' className='form-control-lg'   required style={{ width: '130%',height: '70%' }}
+              <div className=" col-md-4">
+                <h6> Title<span style={{ color: "red" }}>*</span></h6>
+                <input type='text' name='text' className='form-control-lg' required style={{ width: "100%", height: '50px' }}
                   onChange={(e) => setName(e.target.value)}
 
                 />
                 <p><span style={{ color: 'red' }}>{formErrors.titlename}</span></p>
-                 
+
               </div>
             </div>
             {/* </div>  */}
-            <div className="d-flex align-items-center justify-content-center mt-5 ">
+            <div className="d-flex align-items-center justify-content-center mt-4 ">
               <button type="button" className="button btn text-white mx-3 "
-                style={{ backgroundColor: 'orangered' }}
+                style={{ backgroundColor: 'purple', width: "20%" }}
                 onClick={(e) => handleSubmit(e)}
 
               >Submit</button>
@@ -270,7 +274,7 @@ const Title = () => {
                             <td>{titleget.subcategory_name}</td>
                             <td>{titleget.title_name}</td>
                             {/* <td>{titleget.updated_at}</td> */}
-                            <td key={category.id}>{format ( new Date(titleget.created_at), 'dd-MM-yyyy HH:mm')}</td>
+                            <td key={category.id}>{format(new Date(titleget.created_at), 'dd-MM-yyyy HH:mm')}</td>
                             <td key={category.id}>
                               <button type='button' className='button1 border-0'>
                                 <i

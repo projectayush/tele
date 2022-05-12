@@ -6,9 +6,9 @@ router.post("/", LoginController.get_login);
 
 router.post("/resetPassword",  LoginController.resetPassword)
 
-router.post('/updatePassword/:user_id' ,LoginController.updatePassword)
+router.post('/updatePassword/:token' ,LoginController.updatePassword)
 
-router.post('/checkOtp', LoginController.getOtp);
+router.post('/checkOtp/', LoginController.getOtp);
 
 module.exports = router;
 
