@@ -80,14 +80,14 @@ const Header = () => {
             <div className="col-md-5 pb-4 d-flex align-items-end justify-content-end">
 
 
-              <div className="dropdown mt-4 px-3">
-                <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="https://github.com/mdo.png" alt="hugenerd" width="40" height="40" className="rounded-circle " />
-                  <span className="d-none d-sm-inline mx-1 fs-4">{data.full_name}</span>
+              <div  className="dropdown mt-4 px-3 " >
+                <a style={{marginLeft:'400%'}} href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img   src="https://github.com/mdo.png" alt="hugenerd" width="40" height="40" className="rounded-circle " />
+                  <span  className="d-none d-sm-inline mx-1 fs-4">{data.full_name}</span>
                 </a>
-                <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
+                <ul  className="dropdown-menu dropdown-menu-dark text-small shadow">
                  
-                  <li><a className="dropdown-item" href="#" onClick={logout}>Sign out</a></li>
+                  <li ><a  className="dropdown-item" href="#" onClick={logout}>Sign out</a></li>
                   {/* <Link  to="/Logout" className="dropdown-item" href="#">Log Out</Link> */}
                 </ul>
               </div>

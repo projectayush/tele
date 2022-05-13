@@ -8,7 +8,9 @@ import Registrations from './pages/Registrations';
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword';
 import ConfirmPassword from './pages/ConfirmPassword';
-
+import AddTicket from './pages/AddTicket';
+import AllTickets from './pages/AllTickets';
+import TicketDetail from './pages/TicketDetail';
 
 function App() {
   return (
@@ -22,6 +24,9 @@ function App() {
         <Route exact path="/forgotpassword" element={<ForgotPassword />}></Route>
         <Route exact path="/resetpassword/:token" element={<ResetPassword />}></Route>
         <Route exact path="/confirmpassword/:token" element={<ConfirmPassword />}></Route>
+        <Route exact path="/addticket" element={<AddTicket />}></Route>
+        <Route exact path="/alltickets" element={<AllTickets />}></Route>
+        <Route exact path="/ticketdetail" element={<TicketDetail />}></Route>
       </Routes>
     </Router>
   );

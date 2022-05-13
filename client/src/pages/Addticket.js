@@ -216,7 +216,7 @@ const Addticket = () => {
                   </div>
                   <div className="col-md-6">
                     <i className="fa-solid fa-xmark fs-3 d-flex align-items-end justify-content-end "
-                      onClick={pathChange}
+                      onClick={pathChange} 
                     ></i>
                   </div>
                 </div>
