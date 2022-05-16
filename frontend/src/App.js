@@ -26,7 +26,7 @@ function App() {
         <Route exact path="/confirmpassword/:token" element={<ConfirmPassword />}></Route>
         <Route exact path="/addticket" element={<AddTicket />}></Route>
         <Route exact path="/alltickets" element={<AllTickets />}></Route>
-        <Route exact path="/ticketdetail" element={<TicketDetail />}></Route>
+        <Route exact path="/ticketdetail/:id" element={<TicketDetail />}></Route>
       </Routes>
     </Router>
   );

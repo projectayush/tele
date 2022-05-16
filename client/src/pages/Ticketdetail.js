@@ -287,7 +287,7 @@ const Ticketdetail = () => {
                       <p className="px-2"><b>Record Date : </b>{show.updated_at}</p>
                       <p className="px-2"><b>Last activity date : </b>{show.created_at}</p>
 
-                      <p className="px-2"><b>Status : </b>{setStatus(show.status)}</p>
+                      <p className="px-2"><b>Status : </b> {setStatus(show.status)} </p>
                     </div>
                   </div>
                   <div className="col-md-12 ">

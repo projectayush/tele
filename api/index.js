@@ -41,7 +41,11 @@ const otpRoutes = require('./src/OTP/otp.route');
 const registrationRoutes = require('./src/Frontend_api/Registration/registration.route');
 const frontendLoginRoutes = require('./src/Frontend_api/Login/login.route');
 const frontendOtpRoutes = require('./src/Frontend_api/OTP/otp.route');
-
+const frontendTicketRoutes = require('./src/Frontend_api/Tickets/ticket.route');
+const frontendCategoryRoutes = require('./src/Frontend_api/Categories/category.route')
+const frontendDepartmentRoutes =  require('./src/Frontend_api/Departments/department.route');
+const frontendHistoryRoutes = require('./src/Frontend_api/Histories/history.route');
+const frontendCommentRoutes = require('./src/Frontend_api/Comments//comment.route');
 
 // ADMIN ROUTES
 // Login Routes
@@ -70,8 +74,13 @@ app.use('/api/v1/otps' , otpRoutes);
 // FRONTEND ROUTES
 
 app.use('/api/v1/registration',registrationRoutes);
-app.use('/login', frontendLoginRoutes );
+app.use('/loginfrontend', frontendLoginRoutes );
 app.use('/api/v1/otps' , frontendOtpRoutes);
+app.use('/api/ticket' , frontendTicketRoutes);
+app.use('/api/category', frontendCategoryRoutes);
+app.use('/api/department' , frontendDepartmentRoutes);
+app.use('/api/history' , frontendHistoryRoutes);
+app.use('/api/comment' , frontendCommentRoutes);
 
 app.listen(port,()=>{
     console.log(`Server is running at port ${port}`);

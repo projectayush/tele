@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const LoginController = require('../Login/login.controller');
-router.post("/", LoginController.get_login);
+router.post("/", LoginController.login_user);
 
 router.post("/ResetPasswords",  LoginController.resetPassword)
 

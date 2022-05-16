@@ -191,16 +191,20 @@ exports.updatePassword = async (req, res, next) => {
 
 
 // ------------------------------------Update Password End------------------------------------------
-exports.get_login = (req, res) => {
+// 
+
+exports.login_user = (req, res) => {
   const body = req.body;
   console.log("body data ", body);
 
-  LoginModel.get_login(body.email, (err, results) => {
+  LoginModel.login(body.email, (err, results) => {
     console.log("results data ", results);
     const [resultData] = results;
     const full_name = resultData.full_name;
     const id = resultData.id;
-    const role_id =resultData.role_id;
+    const role_id = resultData.role_id;
+    console.log('full_name' , full_name);
+
 
     console.log("resultData : ", resultData);
 
@@ -216,7 +220,7 @@ exports.get_login = (req, res) => {
     const result = (body.password === resultData.password);
     console.log(result);
 
-    // const hashPass = bcrypt.hash(req.body.password, 12);
+    const hashPass = bcrypt.hash(req.body.password, 12);
     if (result && role_id===1) {
 
       const jsontoken = sign({ result: results }, "qwe1234", {
@@ -229,6 +233,7 @@ exports.get_login = (req, res) => {
         token: jsontoken,
         full_name: full_name,
         id: id,
+        data:resultData
       });
 
     } else {
@@ -241,3 +246,6 @@ exports.get_login = (req, res) => {
   })
 
 }
+
+
+
