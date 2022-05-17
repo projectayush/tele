@@ -149,21 +149,21 @@ const AddTicket = () => {
 
 		if (ticketid.length === 0) {
 			toast.error('Ticket Number is required')
-		}else if(!catid){
+		} else if (!catid) {
 			toast.error('Please Select Category')
-		}else if(!subcategoryid){
+		} else if (!subcategoryid) {
 			toast.error('Please Select Subcategory')
 		}
-		else if(!titleid){
+		else if (!titleid) {
 			toast.error('Please Select Title')
 		}
-		else if(description.length === 0){
+		else if (description.length === 0) {
 			toast.error('Description is a required Field')
 		}
-		else if(!deptid){
+		else if (!deptid) {
 			toast.error('Please Select Department')
 		}
-		 else {
+		else {
 			console.log('data', data);
 			// console.log('data1', data1);
 			try {
@@ -207,7 +207,7 @@ const AddTicket = () => {
 					console.log("Some error occured");
 				}
 
-				
+
 
 				// setFormErrors(validate(data));
 				// setIsSubmit(true);
@@ -258,7 +258,7 @@ const AddTicket = () => {
 
 	return (
 		<>
-			<Header />
+
 			<div className="row" id="loginform">
 				<div className="col-md-5">
 					<img src={require('../../src/assets/images/wo7.jpg')} alt="Image" className="img-fluid " style={{ height: '100%' }} />
@@ -407,7 +407,7 @@ const AddTicket = () => {
 
 				</div>
 			</div>
-			<Footer />
+
 		</>
 	)
 }

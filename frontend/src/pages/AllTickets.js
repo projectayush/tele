@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,30 +18,16 @@ const AllTickets = () => {
 		navigate(`/addticket`);
 	}
 
-	const name = localStorage.getItem('full_name');
-	console.log('name', name);
-	let count = 0;
+	// const name = localStorage.getItem('full_name');
+	
+	
 	const [ticket, setTicket] = useState([]);
 	useEffect(() => {
 
 		const getticket = async () => {
 			const res = await fetch("http://localhost:5000/api/ticket/dept");
-			const gettick = await res.json();
-
-			const length = gettick.dept.length;
-			const depart =  gettick.dept;
-
-			console.log('depart' , depart);
-			console.log('length' , length)
-			
-			for(let i =0 ; i< length ; i++){
-				if(depart[i].username === name){
-					setTicket(gettick.dept);
-					count = count+1;
-				}
-				
-			}
-			
+			const gettick = await res.json();			
+			setTicket(gettick.dept);
 			console.log('ticketdetails', gettick);
 			// setTicket(count);
 			
@@ -54,7 +40,7 @@ const AllTickets = () => {
 
 	return (
 		<>
-			<Header />
+		
 			<div className="container">
 				<div className="row">
 					<h2 className='mt-3 text-center' style={{ color: '#0cb4ce' }}>ALL TICKETS</h2>
@@ -118,7 +104,7 @@ const AllTickets = () => {
 
 				</div>
 			</div>
-			<Footer />
+		
 		</>
 	)
 }

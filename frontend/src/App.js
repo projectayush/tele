@@ -10,24 +10,27 @@ import ConfirmPassword from './pages/ConfirmPassword';
 import AddTicket from './pages/AddTicket';
 import AllTickets from './pages/AllTickets';
 import TicketDetail from './pages/TicketDetail';
+import Layout from './Layout/Layout';
 
 function App() {
   return (
 
-    <Router>
+  
       <Routes>
-        <Route exact path="/" element={<Login />}></Route>
-        <Route exact path="/registration" element={<Registration />}></Route>
-        <Route exact path="/home" element={<Home />}></Route>
-        <Route exact path="/reg" element={<Registrations />}></Route>
-        <Route exact path="/forgotpassword" element={<ForgotPassword />}></Route>
-        <Route exact path="/resetpassword/:token" element={<ResetPassword />}></Route>
-        <Route exact path="/confirmpassword/:token" element={<ConfirmPassword />}></Route>
-        <Route exact path="/addticket" element={<AddTicket />}></Route>
-        <Route exact path="/alltickets" element={<AllTickets />}></Route>
-        <Route exact path="/ticketdetail/:id" element={<TicketDetail />}></Route>
+        
+          <Route exact path="/" element={<Login />}></Route>
+          <Route exact path="/registration" element={<Registrations />}></Route>
+          <Route exact path="/home" element={<Layout> <Home /></Layout>}></Route>
+          <Route exact path="/reg" element={<Registrations />}></Route>
+          <Route exact path="/forgotpassword" element={ <ForgotPassword />}></Route>
+          <Route exact path="/resetpassword/:token" element={ <ResetPassword />}></Route>
+          <Route exact path="/confirmpassword/:token" element={ <ConfirmPassword />}></Route>
+          <Route exact path="/addticket" element={ <Layout> <AddTicket /></Layout>}></Route>
+          <Route exact path="/alltickets" element={<Layout> <AllTickets /></Layout>}></Route>
+          <Route exact path="/ticketdetail/:id" element={<Layout> <TicketDetail /></Layout>}></Route>
+        
       </Routes>
-    </Router>
+    
   );
 }
 

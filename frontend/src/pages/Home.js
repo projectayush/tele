@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
       {/* <!-- Header start --> */}
-      <Header />
+      
       {/* <!-- Header end --> */}
 
       {/* <!-- Slider Start --> */}
@@ -194,7 +194,7 @@ const Home = () => {
       {/* <!-- End --> */}
 
       {/* <!-- footer start --> */}
-      <Footer />
+      
 
     </>
 

@@ -2,17 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createRoot } from "react-dom/client";
 import './index.css';
+import { BrowserRouter, BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { UserContextProvider} from './Store/userContext';
+import { UserContextProvider } from './Store/userContext';
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
+// import { UserContextProvider} from './Store/userContext';
+
+
 root.render(
   <UserContextProvider>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+      <Router>
+        <App />
+      </Router>
+    </React.StrictMode>
   </UserContextProvider>
 );
 

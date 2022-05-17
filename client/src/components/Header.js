@@ -27,7 +27,7 @@ const Header = () => {
 
 
               <div className="dropdown mt-4 px-3">
-                <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <a style={{marginLeft:'10%'}} href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src="https://github.com/mdo.png" alt="hugenerd" width="40" height="40" className="rounded-circle " />
                   <span className="d-none d-sm-inline mx-1 fs-4">{data.full_name}</span>
                 </a>
