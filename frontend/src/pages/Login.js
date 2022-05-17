@@ -28,7 +28,7 @@ const Login = () => {
     if (email && password) {
 
       try {
-        const response = await axios.post(`http://localhost:5000/login1`, data);
+        const response = await axios.post(`http://localhost:5000/loginfrontend`, data);
 
         console.log(data);
         console.log(response);
@@ -43,7 +43,7 @@ const Login = () => {
             id: response.data.id
           }
           console.log("userdata2343:", user);
-          console.log("userctx",userctx.updateUser(user))
+          console.log("userctx", userctx.updateUser(user))
           userctx.updateUser(user);
           console.log(response);
           navigate("/home");

@@ -3,7 +3,7 @@ import '../css/Home.css'
 
 const Slider = () => {
   return (
-    <div id="demo" className="carousel slide" data-bs-ride="carousel">
+    <div id="demo" className="carousel-slide" data-bs-ride="carousel" >
 
       {/* <!-- Indicators/dots --> */}
       <div className="carousel-indicators">

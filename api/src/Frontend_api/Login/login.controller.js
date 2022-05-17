@@ -1,4 +1,4 @@
-const dbConn = require('../../config/db.config');
+const dbConn = require('../../../config/db.config');
 const bcrypt = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 const LoginModel = require('./login.model');
@@ -7,7 +7,7 @@ const randtoken = require('rand-token');
 const { json } = require('express');
 const e = require('express');
 // const format = require('date-fns');
-// const { parseConnectionUrl } = require('nodemailer/lib/shared');
+const { parseConnectionUrl } = require('nodemailer/lib/shared');
 
 
 // --------------------------------------------------------------------------------
@@ -52,12 +52,12 @@ exports.resetPassword = async (req, res, next) => {
     if (err) throw err;
     console.log('email', email);
     console.log('result', result[0]);
-   
+
     // console.log('id', result[0].id)
-    // console.log('role_id', result[0].role_id);
 
     try {
-      if (result[0].email.length > 0 && result[0].role_id===0) {
+
+      if (result[0].email == email && result[0].role_id===1) {
         var num = '1234567890';
         var resetToken = '';
         for (let i = 0; i < 4; i++) {
@@ -93,7 +93,6 @@ exports.resetPassword = async (req, res, next) => {
             status: 1,
             token: token,
             result: result[0],
-            role_id: result[0].role_id,
             message: "Successfully Sent"
           })
 
@@ -192,20 +191,20 @@ exports.updatePassword = async (req, res, next) => {
 
 
 // ------------------------------------Update Password End------------------------------------------
+// 
 
-exports.get_login = (req, res) => {
+exports.login_user = (req, res) => {
   const body = req.body;
   console.log("body data ", body);
 
-  LoginModel.get_login(body.email, (err, results) => {
+  LoginModel.login(body.email, (err, results) => {
     console.log("results data ", results);
     const [resultData] = results;
     const full_name = resultData.full_name;
     const id = resultData.id;
     const role_id = resultData.role_id;
-    const password = resultData.password;
-    
-    console.log('role_id' ,role_id);
+    console.log('full_name' , full_name);
+
 
     console.log("resultData : ", resultData);
 
@@ -222,7 +221,7 @@ exports.get_login = (req, res) => {
     console.log(result);
 
     const hashPass = bcrypt.hash(req.body.password, 12);
-    if (result && role_id===0) {
+    if (result && role_id===1) {
 
       const jsontoken = sign({ result: results }, "qwe1234", {
         expiresIn: "1h"
@@ -234,8 +233,7 @@ exports.get_login = (req, res) => {
         token: jsontoken,
         full_name: full_name,
         id: id,
-        role_id:role_id,
-        password:hashPass
+        data:resultData
       });
 
     } else {
@@ -248,4 +246,6 @@ exports.get_login = (req, res) => {
   })
 
 }
+
+
 

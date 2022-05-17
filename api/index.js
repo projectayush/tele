@@ -35,19 +35,21 @@ const ticketRoutes = require('./src/Ticket/ticket.route');
 const historyRoutes = require('./src/History/history.route');
 const commentRoutes = require('./src/Comment/comment.route');
 const otpRoutes = require('./src/OTP/otp.route');
+
+// Frontend Routes
 const registrationRoutes = require('./src/Frontend_api/Registration/registration.route');
-const frontendloginRoutes = require('./src/Frontend_api/Login_frontend/loginFront.route');
-// User Routes
-// app.use('/api/v1/user', loginRoutes);
+const frontendLoginRoutes = require('./src/Frontend_api/Login/login.route');
+const frontendOtpRoutes = require('./src/Frontend_api/OTP/otp.route');
+const frontendTicketRoutes = require('./src/Frontend_api/Tickets/ticket.route');
+const frontendCategoryRoutes = require('./src/Frontend_api/Categories/category.route')
+const frontendDepartmentRoutes =  require('./src/Frontend_api/Departments/department.route');
+const frontendHistoryRoutes = require('./src/Frontend_api/Histories/history.route');
+const frontendCommentRoutes = require('./src/Frontend_api/Comments//comment.route');
 
-// const loginRoutes= require('./src/Login/login.route');
-// // index.js
-// app.use('/api/v1/user', loginRoutes);
-
+// ADMIN ROUTES
+// Login Routes
 const loginRoutes = require('./src/Login/login.route');
 app.use('/login', loginRoutes);
-
-app.use('/loginfrontend', frontendloginRoutes);
 
 // Department Routes
 app.use('/api/v1/departments',departmentRoutes);
@@ -68,7 +70,16 @@ app.use('/api/v1/comments',commentRoutes);
 app.use('/api/v1/otps' , otpRoutes);
 
 
-app.use('/api/v1/registration',registrationRoutes)
+// FRONTEND ROUTES
+
+app.use('/api/v1/registration',registrationRoutes);
+app.use('/loginfrontend', frontendLoginRoutes );
+app.use('/api/v1/otps' , frontendOtpRoutes);
+app.use('/api/ticket' , frontendTicketRoutes);
+app.use('/api/category', frontendCategoryRoutes);
+app.use('/api/department' , frontendDepartmentRoutes);
+app.use('/api/history' , frontendHistoryRoutes);
+app.use('/api/comment' , frontendCommentRoutes);
 
 app.listen(port,()=>{
     console.log(`Server is running at port ${port}`);

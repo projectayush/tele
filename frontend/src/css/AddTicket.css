@@ -1,0 +1,8 @@
+.bg-img{
+	  background-image: url('../assets/images/wo6.jpg') ;
+    max-width: 100%;
+    height: auto;
+    background-size: cover;
+		/* opacity: 60%; */
+}
+
