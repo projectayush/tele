@@ -135,7 +135,7 @@ const Header = () => {
     navigate(`/`);
   }
   let navigate = useNavigate();
-  // console.log('username', data);
+  console.log('username', data);
 
   return (
     <>
@@ -151,9 +151,9 @@ const Header = () => {
               </label>
             </div>
             <div className="col-md-5 pb-4 d-flex align-items-end justify-content-end">
-            {/* <a href="" class="px-3 text-white fw-bolder fs-4 text-decoration-none " >Sign In</a>
+            <a href="" class="px-3 text-white fw-bolder fs-4 text-decoration-none " >Sign In</a>
                <a href="" class="px-3 text-white fw-bolder fs-4 text-decoration-none" >Sign Up</a>
-             <a href="" class="px-3 text-white fw-bolder fs-4 text-decoration-none" >Services</a> */}
+             <a href="" class="px-3 text-white fw-bolder fs-4 text-decoration-none" >Services</a>
 
               <div className="dropdown mt-4 px-3">
                 <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -176,4 +176,3 @@ const Header = () => {
 }
 
 export default Header
-

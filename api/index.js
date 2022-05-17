@@ -36,7 +36,6 @@ const historyRoutes = require('./src/History/history.route');
 const commentRoutes = require('./src/Comment/comment.route');
 const otpRoutes = require('./src/OTP/otp.route');
 
-
 // Frontend Routes
 const registrationRoutes = require('./src/Frontend_api/Registration/registration.route');
 const frontendLoginRoutes = require('./src/Frontend_api/Login/login.route');

@@ -5,6 +5,9 @@ const LoginModel = require('./login.model');
 const nodemailer = require("nodemailer");
 const randtoken = require('rand-token');
 const { json } = require('express');
+const e = require('express');
+// const format = require('date-fns');
+// const { parseConnectionUrl } = require('nodemailer/lib/shared');
 
 
 // --------------------------------------------------------------------------------
@@ -64,14 +67,26 @@ exports.resetPassword = async (req, res, next) => {
 
         var token = randtoken.generate(20);
         console.log("generate token", token);
+        // var jsonDate = now.toJSON();
+        // var date = Date();
+        var today = new Date();
+    var date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    console.log(date);
 
 
+        
 
         var sent = sendEmail(email, resetToken);
         if (sent != '0') {
-          dbConn.query('INSERT INTO otps SET otp="' + resetToken + '" ,user_id="' + result[0].id + '" , token = "' + token + '", otp_type="' + 'forgot password' + '" , created_at =" ' + '2011-03-13 02:53:50' + '"   ', function (err, result) {
+          dbConn.query('INSERT INTO otps SET otp="' + resetToken + '" ,user_id="' + result[0].id + '" , token = "' + token + '", otp_type="' + 'forgot password' + '" , created_at =" ' + date + '"   ', function (err, result) {
             if (err) throw err
           })
+
 
 
           return res.status(200).json({
@@ -82,12 +97,11 @@ exports.resetPassword = async (req, res, next) => {
             message: "Successfully Sent"
           })
 
-
-
-
         }
 
       }
+
+
     }
     catch (err) {
       return res.status(400).json({
@@ -105,7 +119,7 @@ exports.resetPassword = async (req, res, next) => {
 
 exports.getOtp = (req, res) => {
 
-  dbConn.query('SELECT * FROM otps WHERE otp="' + req.body.otp + '"', function (err, results) {
+  dbConn.query('SELECT otp FROM otps WHERE otp="' + req.body.otp + '"', function (err, results) {
     if (err) throw err
     var otp = req.body.otp;
     try {
@@ -134,10 +148,11 @@ exports.getOtp = (req, res) => {
 // ------------------------------------Update password Start-----------------------------------------------
 
 exports.updatePassword = async (req, res, next) => {
-  
+
   var password = req.body.password;
- 
-  dbConn.query(`SELECT * FROM otps WHERE user_id= ${'user_id'}`, [req.params.user_id
+  
+
+  dbConn.query(`SELECT * FROM otps WHERE token= ${'token'}`, [req.params.token
   ], function (err, result) {
 
     if (err) throw err;
@@ -152,7 +167,8 @@ exports.updatePassword = async (req, res, next) => {
             password: hash
           }
           console.log('password11', password)
-          dbConn.query('UPDATE users SET ? WHERE email = "' + result[0].email + '"', data, function (err, result) {
+          console.log('user_id' , result[0].user_id);
+          dbConn.query('UPDATE users SET password ="'+password+'" WHERE id = "' + result[0].user_id + '" ', data, function (err, result) {
             if (err) {
               console.log('err', err);
             }
@@ -161,7 +177,8 @@ exports.updatePassword = async (req, res, next) => {
       });
       return res.status(200).json({
         status: 1,
-        message: "Successfully Updated"
+        message: "Successfully Updated",
+        result: result[0]
       })
     } else {
       console.log(err);
@@ -175,6 +192,7 @@ exports.updatePassword = async (req, res, next) => {
 
 
 // ------------------------------------Update Password End------------------------------------------
+
 exports.get_login = (req, res) => {
   const body = req.body;
   console.log("body data ", body);
@@ -184,7 +202,10 @@ exports.get_login = (req, res) => {
     const [resultData] = results;
     const full_name = resultData.full_name;
     const id = resultData.id;
-
+    const role_id = resultData.role_id;
+    const password = resultData.password;
+    
+    console.log('role_id' ,role_id);
 
     console.log("resultData : ", resultData);
 
@@ -201,7 +222,7 @@ exports.get_login = (req, res) => {
     console.log(result);
 
     const hashPass = bcrypt.hash(req.body.password, 12);
-    if (result) {
+    if (result && role_id===0) {
 
       const jsontoken = sign({ result: results }, "qwe1234", {
         expiresIn: "1h"
@@ -213,6 +234,8 @@ exports.get_login = (req, res) => {
         token: jsontoken,
         full_name: full_name,
         id: id,
+        role_id:role_id,
+        password:hashPass
       });
 
     } else {

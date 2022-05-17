@@ -166,7 +166,11 @@ const Editticket = () => {
           accept: "application/json",
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data1),
+        body: JSON.stringify({
+          ticket_id:params.id,
+          user_id:localStorage.getItem('id'),
+          message: localStorage.getItem('full_name')+' has edited ticket successfuly'
+        }),
       })
 
       let responseJson = await response.json();

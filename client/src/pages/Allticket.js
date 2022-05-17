@@ -13,10 +13,10 @@ const Allticket = () => {
 
   const [ticket, setTicket] = useState([]);
   const [active, setActive] = useState(1);
-  const [category , setCategory]= useState([]);
-  const [subcategory , setSubcategory] = useState([]);
-  const [title , setTitle]= useState([]);
-  const [query , setQuery] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [subcategory, setSubcategory] = useState([]);
+  const [title, setTitle] = useState([]);
+  const [query, setQuery] = useState([]);
 
   useEffect(() => {
     const getsubcategory = async () => {
@@ -46,7 +46,7 @@ const Allticket = () => {
   }, [])
   // let { id } = useParams();
 
-// -------------------
+  // -------------------
   useEffect(() => {
     const getticket = async () => {
       const res = await fetch("http://localhost:5000/api/v1/ticket/dept");
@@ -95,54 +95,40 @@ const Allticket = () => {
           <Sidebar />
           <div className="col py-3">
             {/* <!-- Content area... --> */}
-            <div className="row mx-0 shadow-lg">
-              <div className="card">
-                <div className="card-header">
-                  <div className="col-md-12">
-                    <h4 className="mt-2">Search</h4>
+            <div className="card-header  border-0 ">
+              <div className="row">
+                <div className="card mt-3 border-0">
+                  <div className="card-header ">
+                    <div className="row ">
+                      <div className="col-md-6 ">
+                        <h3><i className="fa-solid fa-magnifying-glass "></i>Search</h3>
+                      </div>
+                      <div className="col-md-6">
+                        <i className="fa-solid fa-dash fs-3 d-flex align-items-end justify-content-end "></i>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-3 mt-3 fs-5 ">
+                        <input type="text" placeholder="Search by Ticket Number" className='form-control-lg' onChange={e => setQuery(e.target.value)} style={{ width: "100%" }} />
+                      </div>
+                      <div className="col-md-3 mt-3 fs-5 ">
+                        <select  style={{ height: '100%', width: '100%' }}>
+                          <option>Search by Category</option>
+                        </select>
+                      </div>
+                      <div className="col-md-3 mt-3 fs-5 ">
+                        <select  style={{ height: '100%', width: '100%' }}>
+                          <option>Search by Subcategory</option>
+                        </select>
+                      </div>
+                      <div className="col-md-3 mt-3 fs-5 ">
+                        <select  style={{ height: '100%', width: '100%' }}>
+                          <option>Search by Title</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="row mb-4">
-                  <div className="col-md-3">
-                    <input type="text" 
-                    onChange={(e)=>setQuery(e.target.value)}
-                    placeholder="Search by Ticket Number" className="mt-4 py-3 px-2" />
-
-                  </div>
-                  <div className="col-md-3">
-                  <select  className="p-3 mt-4" 
-                  onChange={(e)=>setQuery(e.target.value)}
-                  style={{ width: "96%" }}>
-                      <option >Select Category</option>
-                      {
-                        subcategory.map((getcategory)=>(
-                          <option value={getcategory.id}>{getcategory.category_name}</option>
-                        ))
-                      }
-                    </select>
-                  </div>
-                  <div className="col-md-3">
-                    <select id="cars" name="cars" className="p-3 mt-4" style={{ width: "96%" }}>
-                      <option >Select Subcategory</option>
-                      {
-                        category.map((getcategory)=>(
-                          <option value={getcategory.id}>{getcategory.subcategory_name}</option>
-                        ))
-                      }
-                    </select>
-                  </div>
-                  <div className="col-md-3">
-                    <select id="cars" name="cars" className="p-3 mt-4" style={{ width: "96%" }}>
-                      <option >Select Title</option>
-                      {
-                        title.map((gettitle)=>(
-                          <option value={gettitle.id}>{gettitle.title_name}</option>
-                        ))
-                      }
-                    </select>
-                  </div>
-                </div>
-              
               </div>
             </div>
             <div className="card shadow-lg border-0 mt-3">

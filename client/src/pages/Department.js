@@ -171,10 +171,7 @@ const Department = () => {
                       <div className="col-md-6 mt-3 fs-5 ">
                         <input type="text" placeholder="Search by Department" className='form-control-lg' onChange={e => setQuery(e.target.value)} style={{ width: "100%" }} />
                       </div>
-                      {/* <div className="col-md-6 mt-2 form-control-lg  fs-5 border-0 ">
-                        <button type="button" className="btn text-white d-flex align-items-start justify-content-start "
-                          style={{ backgroundColor: "orangered" }}><b>RESET</b></button>
-                      </div> */}
+                      
                     </div>
                   </div>
                 </div>
@@ -239,28 +236,6 @@ const Department = () => {
   )
 }
 
-function getDate(date) {
 
-  var date = Date.parse(date.toString());
-
-  console.log(date.getTime());
-
-  // var date =
-
-  //   today.getFullYear() +
-  //   "-" +
-  //   (today.getMonth() + 1) +
-  //   "-" +
-  //   today.getDate() +
-  //   " " +
-  //   today.getHours() +
-  //   ":" +
-  //   today.getMinutes() +
-  //   ":" +
-  //   today.getSeconds() +
-
-  //   today.getDate();
-  return date
-}
 
 export default Department
