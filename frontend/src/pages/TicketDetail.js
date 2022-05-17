@@ -274,7 +274,7 @@ const TicketDetail = () => {
 
   return (
     <>
-      <Header />
+      
       <Modal
         size='lg'
         isOpen={modal}
@@ -362,7 +362,7 @@ const TicketDetail = () => {
           </div>
         </div>
       </section>
-      <Footer />
+    
     </>
   )
 }

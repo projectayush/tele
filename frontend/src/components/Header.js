@@ -120,6 +120,7 @@ import 'bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../css/Header.css'
 
 toast.configure()
 
@@ -135,7 +136,14 @@ const Header = () => {
     navigate(`/`);
   }
   let navigate = useNavigate();
-  console.log('username', data);
+  console.log('username', userctx.user.full_name);
+  console.log('data.full_name' , data.full_name);
+
+  
+
+  const pathChange = ()=>{
+    navigate(`/alltickets`)
+  }
 
   return (
     <>
@@ -143,27 +151,28 @@ const Header = () => {
       <div className="card bg-info" >
         <div className="card-header">
           <div className="row">
-            <div className="col-md-7">
+            <div className="col-md-8 mt-4">
               <img src="./images/logo.jpg" alt="logo" height="auto" width="140px" className="px-4 pt-0 pb-1" />
               <label>
                 <h3 className="text-white fw-bolder fs-1 pt-3 "
                   style={{ fontFamily: 'cursive', letterSpacing: '6px' }}><i>TELETIC</i></h3>
               </label>
             </div>
-            <div className="col-md-5 pb-4 d-flex align-items-end justify-content-end">
-            <a href="" class="px-3 text-white fw-bolder fs-4 text-decoration-none " >Sign In</a>
-               <a href="" class="px-3 text-white fw-bolder fs-4 text-decoration-none" >Sign Up</a>
-             <a href="" class="px-3 text-white fw-bolder fs-4 text-decoration-none" >Services</a>
+            <div  className="   col-md-4 pb-4  d-flex align-items-end justify-content-end">
+            
+             <a  href="" className="  px-3 text-white fw-bolder fs-4 text-decoration-none"
+             onClick={pathChange}
+             >TICKETS</a>
 
-              <div className="dropdown mt-4 px-3">
-                <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <div className=" dropdown mt-4 px-3">
+                <a  href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src="https://github.com/mdo.png" alt="hugenerd" width="40" height="40" className="rounded-circle " />
-                  <span className="d-none d-sm-inline mx-1 fs-4">{data.full_name}</span>
+                  <span className="d-none d-sm-inline mx-1 fs-4">{localStorage.getItem('full_name')}</span>
                 </a>
                 <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
                  
                   <li><a className="dropdown-item" href="#" onClick={logout}>Sign out</a></li>
-                  {/* <Link  to="/Logout" className="dropdown-item" href="#">Log Out</Link> */}
+                  
                 </ul>
               </div>
             </div>
