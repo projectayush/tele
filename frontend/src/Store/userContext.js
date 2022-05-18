@@ -8,14 +8,14 @@ const userContext = createContext({
   clearUser: () => { }
 });
 
-console.log(GetUser());
+// console.log(GetUser());
 export function UserContextProvider(props) {
 
   const [user, setUser] = useState(GetUser);
   const clearUserHandler = () => {
     RemoveUser();
     setUser({});
-    console.log(GetUser());
+    // console.log(GetUser());
 
   }
 

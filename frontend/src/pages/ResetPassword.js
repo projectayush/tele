@@ -30,12 +30,12 @@ const ResetPassword = () => {
 
 
 		if (resetToken.length === 0) {
-			toast("Please Enter OTP")
+			toast.error("Please Enter OTP")
 		} else {
 
 			try {
 				
-					let res = await fetch(`http://localhost:5000/login/CheckOtps/`, {
+					let res = await fetch(`http://localhost:5000/loginfrontend/CheckOtps/`, {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const ResetPassword = () => {
 						navigate(`/confirmpassword/${localStorage.getItem('f_Token')}`)
 					}			
 			} catch (error) {
-				toast("Please Enter Valid OTP");
+				toast.error("Please Enter Valid OTP");
 			}
 
 

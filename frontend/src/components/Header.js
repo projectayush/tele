@@ -127,7 +127,7 @@ toast.configure()
 
 const Header = () => {
   const userctx = useContext(userContext);
-  console.log(userctx.user  );
+  // console.log(userctx.user  );
   const data = userctx.user;
 
   function logout (){
@@ -136,8 +136,8 @@ const Header = () => {
     navigate(`/`);
   }
   let navigate = useNavigate();
-  console.log('username', userctx.user.full_name);
-  console.log('data.full_name' , data.full_name);
+  // console.log('username', userctx.user.full_name);
+  // console.log('data.full_name' , data.full_name);
 
   
 

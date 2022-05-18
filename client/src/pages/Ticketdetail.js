@@ -281,27 +281,7 @@ const Ticketdetail = () => {
           Comment
         </ModalHeader>
         {modelBodyBlock}
-        {/* <ModalBody>
-          <form  >
-            <div className="row   ">
-              <div className='text-center'>
-                <input className='text-left fs-5 ' type='text' name='text' placeholder='Enter Comments'
-                  onChange={(e) => setName(e.target.value)} required style={{ width: '35%' }, { height: '130%' }}
-
-
-                />
-              </div>
-            </div>
-            <div className="d-flex align-items-center justify-content-center mt-5 ">
-              <button type="button" className="button btn text-white mx-3 "
-                style={{ backgroundColor: 'orangered' }}
-                onClick={(e) => handleSubmit(e)}
-
-              >Save</button>
-            </div>
-          </form>
-
-        </ModalBody> */}
+        
       </Modal>
       {/* <div className="container-fluid "> */}
         {/* <!-- Sidebar start --> */}

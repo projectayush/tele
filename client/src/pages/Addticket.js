@@ -108,6 +108,8 @@ const Addticket = () => {
     status: 0
   };
 
+  localStorage.setItem('Ticketid' , ticketid);
+
   // let message1 = 'has created ticket succesfully';
   let data1 = {
     ticket_id: ticketid,

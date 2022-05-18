@@ -19,6 +19,7 @@ import PublicRoute from './Utils/PublicRoute';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import ConfirmPassword from './pages/ConfirmPassword';
+import Feedback from './pages/Feedback';
 
 const CustomRoute = () => {
 
@@ -69,6 +70,16 @@ const CustomRoute = () => {
           </PrivateRoute>
         }
       />
+      
+      <Route
+        path="/feedback"
+        element={
+          <PrivateRoute >
+            < Feedback />
+          </PrivateRoute>
+        }
+      />
+
       <Route
         path="/Dashboard"
         element={

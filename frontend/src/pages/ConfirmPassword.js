@@ -23,12 +23,12 @@ const ConfirmPassword = () => {
 
 		let resetpassword = async () => {
 			if(password.length === 0){
-				toast("Please Enter Password")
+				toast.error("Please Enter Password")
 			}else{
 				if(password === newPassword){
 					try {
 				
-						let res = await fetch(`http://localhost:5000/login/UpdatePasswords/${token}`, {
+						let res = await fetch(`http://localhost:5000/loginfrontend/UpdatePasswords/${token}`, {
 							method: 'POST',
 							headers: {
 								'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const ConfirmPassword = () => {
 						toast("Please Enter Valid email id");
 					}
 				}else{
-					toast("Password doesnt match! Please Try again")
+					toast.error("Password doesnt match! Please Try again")
 				}
 				// navigate('/');
 	
