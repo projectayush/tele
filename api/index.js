@@ -29,12 +29,14 @@ dotenv.config();
 
 // import login routes
 // const loginRoutes= require('./src/Login/login.route');
+// Client ROUTES
 const departmentRoutes = require('./src/Department/dept.route');
 const categoryRoutes = require('./src/Category/category.route');
 const ticketRoutes = require('./src/Ticket/ticket.route');
 const historyRoutes = require('./src/History/history.route');
 const commentRoutes = require('./src/Comment/comment.route');
 const otpRoutes = require('./src/OTP/otp.route');
+const feedbackRoutes = require('./src/Feedbacks/feedback.route');
 
 // Frontend Routes
 const registrationRoutes = require('./src/Frontend_api/Registration/registration.route');
@@ -45,6 +47,7 @@ const frontendCategoryRoutes = require('./src/Frontend_api/Categories/category.r
 const frontendDepartmentRoutes =  require('./src/Frontend_api/Departments/department.route');
 const frontendHistoryRoutes = require('./src/Frontend_api/Histories/history.route');
 const frontendCommentRoutes = require('./src/Frontend_api/Comments//comment.route');
+const frontendFeedbackRoutes = require('./src/Frontend_api/Feedbacks/feedback.route');
 
 // ADMIN ROUTES
 // Login Routes
@@ -69,6 +72,9 @@ app.use('/api/v1/comments',commentRoutes);
 // OTP Routes
 app.use('/api/v1/otps' , otpRoutes);
 
+// Feeback Rotues
+app.use('/api/v1/feedbacks',  feedbackRoutes);
+
 
 // FRONTEND ROUTES
 
@@ -80,6 +86,7 @@ app.use('/api/category', frontendCategoryRoutes);
 app.use('/api/department' , frontendDepartmentRoutes);
 app.use('/api/history' , frontendHistoryRoutes);
 app.use('/api/comment' , frontendCommentRoutes);
+app.use('/api/feedback' , frontendFeedbackRoutes);
 
 app.listen(port,()=>{
     console.log(`Server is running at port ${port}`);

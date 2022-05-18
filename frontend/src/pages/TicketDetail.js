@@ -10,6 +10,7 @@ import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 import History from '../components/History';
 import Comments from '../components/Comments';
 
+
 toast.configure()
 
 
@@ -39,7 +40,7 @@ const TicketDetail = () => {
       setTickets(gettic.ticketid[0]);
     }
     getTicket();
-  }, [])
+  })
 
 
 
@@ -50,7 +51,7 @@ const TicketDetail = () => {
       setShow(gettic1.dept[0]);
     }
     getdepart();
-  }, [])
+  })
   let data = {
     ticket_id: id,
     user_id: localStorage.getItem('id'),

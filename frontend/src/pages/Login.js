@@ -17,6 +17,9 @@ const Login = () => {
   const [password, setPassword] = UseLocalStorage1("password", '');
   const [email, setEmail] = UseLocalStorage('email', '');
  
+  const pathChange = () =>{
+    navigate(`/forgotpassword`)
+  }
 
 
   let navigate = useNavigate();
@@ -99,7 +102,10 @@ const Login = () => {
             <div className="form-group mt-4 mx-3">
               <button type="button" className="btn btn-primary border-0 " onClick={(e) => { LoginIn(e) }} >Sign In</button>
 
-              <p className="mt-3 fs-5" >Forgot Your Password?</p>
+              <p className="mt-3 fs-5" ><a href='#'
+              onClick={pathChange}
+              >Forgot Your Password?</a></p>
+
             </div>
 
             <div className="form-group  mx-3 ">

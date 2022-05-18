@@ -3,7 +3,7 @@ import '../css/Home.css'
 
 const Slider = () => {
   return (
-    <div id="demo" className="carousel-slide" data-bs-ride="carousel" >
+    <div id="demo" className="carousel-slide" data-bs-ride="carousel"  >
 
       {/* <!-- Indicators/dots --> */}
       <div className="carousel-indicators">
@@ -13,7 +13,7 @@ const Slider = () => {
       </div>
 
       {/* <!-- The slideshow/carousel --> */}
-      <div className="carousel-inner">
+      <div className="carousel-inner"  >
         <div className="carousel-item active">
           <img src={require('../../src/assets/images/telecom1.jpg')} alt="Los Angeles" className="d-block" style={{ width: "100%" }} />
           <div className="carousel-caption">

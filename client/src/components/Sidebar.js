@@ -65,6 +65,15 @@ const Sidebar = () => {
 
               </a>
             </li>
+
+            <li className="nav-item mt-3">
+
+              <a href="#" className="nav-link align-middle px-0">
+                <i className="fa-solid fa-ticket fs-4 text-black"></i>
+                <NavLink className="ms-1 d-none d-sm-inline text-black" to="/feedback">Feedback</NavLink>
+
+              </a>
+            </li>
           </ul>
 
           <hr />

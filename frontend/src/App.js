@@ -10,6 +10,7 @@ import ConfirmPassword from './pages/ConfirmPassword';
 import AddTicket from './pages/AddTicket';
 import AllTickets from './pages/AllTickets';
 import TicketDetail from './pages/TicketDetail';
+import Feedback from './pages/Feedback';
 import Layout from './Layout/Layout';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/confirmpassword/:token" element={ <ConfirmPassword />}></Route>
           <Route exact path="/addticket" element={ <Layout> <AddTicket /></Layout>}></Route>
           <Route exact path="/alltickets" element={<Layout> <AllTickets /></Layout>}></Route>
+          <Route exact path="/feedback/:id" element={<Layout> <Feedback /></Layout>}></Route>
           <Route exact path="/ticketdetail/:id" element={<Layout> <TicketDetail /></Layout>}></Route>
         
       </Routes>
