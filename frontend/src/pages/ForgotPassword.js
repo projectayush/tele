@@ -170,13 +170,8 @@ const ForgotPassword = () => {
       } catch (error) {
         toast.error("Email ID is not valid , Try again!");
       }
-
-      // let user ={id:id};
-
-    }
-
-
-  }
+ }
+}
 
 
 

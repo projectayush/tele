@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { toast } from 'react-toastify';
 import '../css/Registration.css'
+import { useNavigate } from 'react-router-dom';
+import userContext from '../Store/userContext';
 var validator = require('validator');
 
 
 const Registrations = () => {
-
+  // const userctx = useContext(userContext);
   const [full_name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
@@ -13,8 +15,13 @@ const Registrations = () => {
   const [submit, setSubmit] = useState({ full_name: false, email: false, password: false, confirmPassword: false })
   const [errors, setErrors] = useState({})
 
+  let navigate = useNavigate();
+  let data = { email: email };
+
+
 
   const handleSubmit = async () => {
+
     // console.log(errors)
     let created_at = new Date().toLocaleDateString();
     let updated_at = new Date().toLocaleDateString();
@@ -46,14 +53,32 @@ const Registrations = () => {
 
             let resJson = await res.json();
             console.log('resjson ', resJson);
+            localStorage.setItem("full_name",resJson.data.full_name);
+            // localStorage.setItem("id",resJson.id);
+            // localStorage.setItem("email",resJson.data.email);
+              
 
-            if (res.status === 200) {
+            if (resJson.status === 200) {
+              
+              // let user = {
+              //   full_name: resJson.data.full_name,
+              //   token: resJson.data.token,
+              //   email: email,
+              //   id: resJson.data.id
+
+              // }
+              // console.log("userdata2343:", user);
+              // console.log("userctx", userctx.updateUser(user.full_name))
+              // userctx.updateUser(user.full_name);
+              console.log(resJson);
+              navigate("/otp");
               toast("Data added Successfully")
               console.log("Data added Successfully");
 
+
             } else {
-              toast("Some error occured")
-              console.log("Some error occured");
+              toast("Data added Successfully")
+              // console.log("Some error occured");
             }
           } catch (err) {
             console.log('ErroR:', err);
@@ -61,9 +86,44 @@ const Registrations = () => {
         }
       }
     }
+    Nowmail();
   }
 
-const handlefullName = async (e) => {
+  let Nowmail = async () => {
+    if (email.length === 0) {
+      toast.error("Please Enter Email id")
+    } else {
+      try {
+
+        let res = await fetch('http://localhost:5000/loginfrontend/ResetPasswords', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+          ,
+        })
+
+        let resJson = await res.json();
+        console.log('resjson ', resJson);
+        console.log('resJson.token', resJson.token);
+
+        // localStorage.setItem("f_Id", resJson.result.id);
+        // localStorage.setItem("f_Token", resJson.token)
+        // console.log('id:', resJson.result.id)
+        // console.log('token:', resJson.token)
+        toast("Successfully sent to your Email id , Please Check")
+
+
+        navigate("/otp");
+      } catch (error) {
+        toast.error("Email ID is not valid , Try again!");
+      }
+    }
+  }
+
+
+  const handlefullName = async (e) => {
     e.preventDefault()
     setName(e.target.value)
 
@@ -181,6 +241,13 @@ const handlefullName = async (e) => {
     })
   }
 
+  const [counter, setCounter] = React.useState(59);
+  useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+    return () => clearInterval(timer);
+
+  }, [counter])
   return (
     <div className="row" id="registrationForm">
       <div className="col-md-7" style={{ verticalAlign: "middle" }}>

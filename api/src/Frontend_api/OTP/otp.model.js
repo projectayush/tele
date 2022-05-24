@@ -7,6 +7,7 @@ var OTP = function (otp) {
     this.user_id = otp.user_id;
     this.otp_type = otp.otp_type;
 	this.created_at = new Date();
+	this.expirein = otp.expirein;
 	
 }
 

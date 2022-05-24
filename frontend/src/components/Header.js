@@ -126,6 +126,7 @@ toast.configure()
 
 
 const Header = () => {
+  // const [name, setName] = useState;
   const userctx = useContext(userContext);
   // console.log(userctx.user  );
   const data = userctx.user;

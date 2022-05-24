@@ -21,7 +21,8 @@ exports.Register = (req, res) => {
         res.send(err);
         res.json({ status: false, message: 'Somthing went wrong', data: user })
       } else {
-        res.send({ message: user.message });
+        res.send({ data: data});
+        // res.send({ message: user.message });
       }
     })
 

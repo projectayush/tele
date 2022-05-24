@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext,useRef } from 'react'
 import axios from 'axios';
 import UseLocalStorage, { UseLocalStorage2 } from '../UseLocalStorage';
 import { UseLocalStorage1 } from '../UseLocalStorage';
@@ -9,22 +9,65 @@ import '../css/Login.css'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 toast.configure()
 
 var validator = require('validator');
+
+
 const Login = () => {
+ 
+
   const userctx = useContext(userContext);
   const [password, setPassword] = UseLocalStorage1("password", '');
   const [email, setEmail] = UseLocalStorage('email', '');
- 
+  
   const pathChange = () =>{
     navigate(`/forgotpassword`)
   }
 
 
   let navigate = useNavigate();
+  let data = { email: email };
+
+  let  Nowmail = async () => {
+    if (email.length === 0) {
+      toast.error("Please Enter Email id")
+    } else {
+      try {
+
+        let res = await fetch('http://localhost:5000/loginfrontend/ResetPasswords', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+          ,
+        })
+
+        let resJson = await res.json();
+        console.log('resjson ', resJson);
+        console.log('resJson.token', resJson.token);
+
+        localStorage.setItem("f_Id", resJson.result.id);
+        localStorage.setItem("f_Token", resJson.token)
+        console.log('id:', resJson.result.id)
+        console.log('token:', resJson.token)
+        toast("Successfully sent to your Email id , Please Check")
+
+
+        navigate(`/otp/${resJson.token}/`)
+      } catch (error) {
+        toast.error("Email ID is not valid , Try again!");
+      }
+ }
+}
+
+
+  
 
   async function LoginIn(e) {
+    Nowmail();
     e.preventDefault();
     let data = { email, password };
     console.log('data', data);
@@ -49,7 +92,7 @@ const Login = () => {
           console.log("userctx", userctx.updateUser(user))
           userctx.updateUser(user);
           console.log(response);
-          navigate("/home");
+          navigate("/otp");
 
         }
         else {
