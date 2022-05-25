@@ -92,7 +92,7 @@ const Login = () => {
           console.log("userctx", userctx.updateUser(user))
           userctx.updateUser(user);
           console.log(response);
-          navigate("/otp");
+          navigate("/otp_login");
 
         }
         else {

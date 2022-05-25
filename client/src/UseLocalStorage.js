@@ -59,9 +59,9 @@ const UseLocalStorage = (key  , initialValue) => {
     let[email , setEmail] = useState(()=>{
         return getSavedValue(key , initialValue);
     });
-    useEffect(()=>{
-        localStorage.setItem(key , JSON.stringify(email))
-    }, [email , key]);
+    // useEffect(()=>{
+    //     localStorage.setItem(key , JSON.stringify(email))
+    // }, [email , key]);
   return [email , setEmail];
 
 }

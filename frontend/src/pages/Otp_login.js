@@ -11,33 +11,36 @@ toast.configure()
 // const INITIAL_COUNT = 30
 // const twoDigits = (num) => String(num).padStart(1,'0')
 
-const Otp = () => {
-  // let token_from_local = localStorage.getItem("f_Token");
+const Otp_login = () => {
+//   let token_from_local = localStorage.getItem("f_Token");
     let navigate = useNavigate();
-
-    const emailData = localStorage.getItem("email")
+    // const [secondsRemaining,setSecondsRemaining] = useState(INITIAL_COUNT)
+    // const secondToDisplay = secondsRemaining % 60
+    // const minutesRemaining = (secondsRemaining - secondToDisplay) /60
+    // const minutesToDisplay = minutesRemaining % 60
+    // const hoursToDisplay = (minutesRemaining - minutesToDisplay) /60
 
     const [resetToken, setResetToken] = useState({});
     const [FinalSeconds, setFinalSeconds] = useState(60);
     const [otp, setOtp] = useState("");
     const [OtpCheck, setOtpCheck] = useState(false);
-    const [email, setEmail] = useState( emailData)
+    const [email, setEmail] = UseLocalStorage('email', '');
 
     
-  //console.log("resetToken",resetToken);
+  console.log("resetToken",resetToken);
     //let Seconds = 30;
 
+  console.log('Id : ', localStorage.getItem('f_Id'));
+	console.log('Token : ', localStorage.getItem('f_Token'));
     let data ={otp:resetToken};
     let data1 = { email: email };
    
     useEffect(() => {
-      //localStorage.setItem("email", "");
-
         timer();
     }, [])
 
     const timer = () =>{
-      //setOtpCheck(0);
+      setOtpCheck(0);
         let Seconds = 60;
         let newSeconds = Seconds;
 
@@ -58,8 +61,8 @@ const Otp = () => {
 
       const reSendotp= async () => {
 
-       
-try{
+        console.log("cLICKED");
+
             let res = await fetch('http://localhost:5000/loginfrontend/ResetPasswords', {
               method: 'POST',
               headers: {
@@ -69,20 +72,17 @@ try{
               ,
             })
     
-            let resJson = await res.json();   
-            console.log("----------------------------------------------------------------------");          
-            console.log("resJson",resJson);
-            console.log("----------------------------------------------------------------------");          
-
+            let resJson = await res.json();             
+            localStorage.setItem("f_Id", resJson.result.id);
+            localStorage.setItem("f_Token", resJson.token)
+            console.log('id:', resJson.result.id)
+            console.log('token:', resJson.token)
             toast("Successfully sent to your Email id , Please Check")
             setOtpCheck(false);
             timer();
           
             if(resJson.status===404){
               toast.error("Email ID is not valid , Try again!");
-            }
-          }catch{
-
             }
                
           }
@@ -109,10 +109,9 @@ try{
         toast("Login successfully");
         navigate(`/home`)
       }
-      
-      else if(resJson.status===401){
-        toast.error("OTP expired");
-      }
+      // else if(resJson.status===401){
+      //   toast.error("OTP expired");
+      // }
 			// alert("Your OTP is verified Successfully");
 			
 			
@@ -328,7 +327,7 @@ try{
         
 //     }
 }
-export default Otp
+export default Otp_login 
 
 // import React, { useState, useContext } from 'react';
 

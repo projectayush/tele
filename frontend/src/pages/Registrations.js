@@ -7,7 +7,7 @@ var validator = require('validator');
 
 
 const Registrations = () => {
-  // const userctx = useContext(userContext);
+  const userctx = useContext(userContext);
   const [full_name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
@@ -16,7 +16,7 @@ const Registrations = () => {
   const [errors, setErrors] = useState({})
 
   let navigate = useNavigate();
-  let data = { email: email };
+  let data1 = { email: email };
 
 
 
@@ -43,6 +43,7 @@ const Registrations = () => {
           })
           // console.log("Success")
           try {
+            // const {email} = email
             let res = await fetch(`http://localhost:5000/api/v1/registration`, {
               method: 'POST',
               headers: {
@@ -50,26 +51,36 @@ const Registrations = () => {
               },
               body: JSON.stringify(data),
             })
-
             let resJson = await res.json();
+            console.log(resJson.data.email)
+            console.log(resJson);
+            
+            
+            localStorage.setItem("email", resJson.data.email)
             console.log('resjson ', resJson);
-            localStorage.setItem("full_name",resJson.data.full_name);
-            // localStorage.setItem("id",resJson.id);
-            // localStorage.setItem("email",resJson.data.email);
-              
+            localStorage.setItem("full_name", resJson.data.full_name);
+            //localStorage.setItem("email", {});
+
+            localStorage.setItem("f_Id", resJson.result.id);
+            localStorage.setItem("f_Token", resJson.token);
+
+            console.log('id:', resJson.result.id)
+            console.log('token:', resJson.token)
+            let user = {
+              full_name: res.data.full_name,
+              token: res.data.token,
+              email: email,
+              id: res.data.id
+            }
+            console.log("userdata2343:", user);
+            console.log("userctx", userctx.updateUser(user))
+            userctx.updateUser(user);
+            
+
 
             if (resJson.status === 200) {
-              
-              // let user = {
-              //   full_name: resJson.data.full_name,
-              //   token: resJson.data.token,
-              //   email: email,
-              //   id: resJson.data.id
 
-              // }
-              // console.log("userdata2343:", user);
-              // console.log("userctx", userctx.updateUser(user.full_name))
-              // userctx.updateUser(user.full_name);
+           
               console.log(resJson);
               navigate("/otp");
               toast("Data added Successfully")
@@ -100,7 +111,7 @@ const Registrations = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data1)
           ,
         })
 
@@ -108,14 +119,14 @@ const Registrations = () => {
         console.log('resjson ', resJson);
         console.log('resJson.token', resJson.token);
 
-        // localStorage.setItem("f_Id", resJson.result.id);
-        // localStorage.setItem("f_Token", resJson.token)
-        // console.log('id:', resJson.result.id)
-        // console.log('token:', resJson.token)
+        localStorage.setItem("f_Id", resJson.result.id);
+        localStorage.setItem("f_Token", resJson.token)
+        console.log('id:', resJson.result.id)
+        console.log('token:', resJson.token)
         toast("Successfully sent to your Email id , Please Check")
+        
 
-
-        navigate("/otp");
+        navigate(`/otp`)
       } catch (error) {
         toast.error("Email ID is not valid , Try again!");
       }
@@ -175,32 +186,6 @@ const Registrations = () => {
     }
   }
 
-  // const handlePassword = async (e) => {
-  //   e.preventDefault()
-  //   setPassword(e.target.value)
-  //   const pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-  //   if (password.length !== 0) {
-  //     // console.log(!pass.test(password))
-  //     setErrors({
-  //       ...errors,
-  //       password: "**Password required"
-  //     })
-  //   }
-
-  //   if (pass.test(password)) {
-  //     setErrors({
-  //       ...errors,
-  //       password: ""
-  //     })
-  //     setSubmit({
-  //       ...submit,
-  //       password: true
-  //     })
-  //   }
-
-  // console.log(errors)
-
 
   const handlePassword = async (e) => {
     e.preventDefault()
@@ -218,16 +203,7 @@ const Registrations = () => {
       })
     }
 
-    // if (!password) {
-    //   setErrors({
-    //     ...errors,
-    //     fields: "fields cannot be empty"
-    //   })
-    //   setSubmit({
-    //     ...submit,
-    //     password: true
-    //   })
-    // }
+  
 
   }
 
@@ -274,7 +250,7 @@ const Registrations = () => {
               <i className="fas fa-envelope"></i>
               <input type="email" placeholder="Email-address"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                // onChange={(e) => setEmail(e.target.value)}
                 onChange={handleEmail}
                 className="form-control-lg shadow-sm rounded-pill border border-secondary " />
             </label>

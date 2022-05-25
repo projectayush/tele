@@ -13,6 +13,7 @@ import TicketDetail from './pages/TicketDetail';
 import Feedback from './pages/Feedback';
 import Layout from './Layout/Layout';
 import Otp from './pages/Otp';
+import Otp_login from './pages/Otp_login';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/reg" element={<Registrations />}></Route>
           <Route exact path="/forgotpassword" element={ <ForgotPassword />}></Route>
           <Route exact path="/otp" element={ <Otp />}></Route>
+          <Route exact path="/otp_login" element={ <Otp_login />}></Route>
           <Route exact path="/resetpassword/:token" element={ <ResetPassword />}></Route>
           <Route exact path="/confirmpassword/:token" element={ <ConfirmPassword />}></Route>
           <Route exact path="/addticket" element={ <Layout> <AddTicket /></Layout>}></Route>
