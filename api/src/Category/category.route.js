@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const categoryController = require('./category.controller');
-var jwt = require("jsonwebtoken");
+// var jwt = require("jsonwebtoken");
 
 // get all users
 router.get('/', categoryController.getCategoryList);

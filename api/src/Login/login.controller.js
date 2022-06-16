@@ -83,7 +83,7 @@ exports.resetPassword = async (req, res, next) => {
 
         var sent = sendEmail(email, resetToken);
         if (sent != '0') {
-          dbConn.query('INSERT INTO otps SET otp="' + resetToken + '" ,user_id="' + result[0].id + '" , token = "' + token + '", otp_type="' + 'forgot password' + '" , created_at =" ' + date + '"   ', function (err, result) {
+          dbConn.query('INSERT INTO otps SET otp="' + resetToken + '" ,user_id="' + result[0].id + '" , token = "' + token + '", otp_type="' + 'OTP Verified' + '" , created_at =" ' + date + '"   ', function (err, result) {
             if (err) throw err
           })
 

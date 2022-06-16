@@ -4,7 +4,6 @@ import '../css/Department.css'
 import Sidebar from '../components/Sidebar'
 import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 import { toast } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure()
@@ -188,7 +187,7 @@ const Department = () => {
                     <button type="button"
                       className=" btn  text-white "
                       onClick={() => setModal(true)}
-                      style={{ width: "30%" }, { backgroundColor: 'orangered' }}><b>Add Department</b></button>
+                      style={{ width: "30%" }}><b>Add Department</b></button>
                   </div>
                 </div>
                 <hr />
